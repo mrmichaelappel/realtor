@@ -1,50 +1,283 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+const siteTitle = "Michael Appel | REALTOR®";
+const siteDescription =
+  "Michael Appel — REALTOR® helping buyers and sellers navigate real estate with confidence.";
 ---
 
-<!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{siteTitle}</title>
+    <meta name="description" content={siteDescription} />
+
+    <style>
+      :global(*) {
+        box-sizing: border-box;
+      }
+
+      :global(body) {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #1f2937;
+        background: #ffffff;
+      }
+
+      header {
+        padding: 24px 6%;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      nav a {
+        margin-left: 24px;
+        text-decoration: none;
+        color: #374151;
+      }
+
+      nav a:hover {
+        color: #111827;
+      }
+
+      .hero {
+        min-height: 620px;
+        display: flex;
+        align-items: center;
+        padding: 80px 6%;
+        background: linear-gradient(135deg, #f8fafc, #eef2f7);
+      }
+
+      .hero-content {
+        max-width: 760px;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        font-size: clamp(46px, 7vw, 82px);
+        line-height: 0.98;
+        margin: 0 0 24px;
+        letter-spacing: -3px;
+      }
+
+      .hero p {
+        font-size: 21px;
+        line-height: 1.6;
+        max-width: 650px;
+        color: #4b5563;
+      }
+
+      .buttons {
+        margin-top: 32px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 15px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .primary {
+        background: #111827;
+        color: white;
+      }
+
+      .secondary {
+        border: 1px solid #9ca3af;
+        color: #111827;
+        background: white;
+      }
+
+      section {
+        padding: 90px 6%;
+      }
+
+      .section-inner {
+        max-width: 1100px;
+        margin: auto;
+      }
+
+      h2 {
+        font-size: 40px;
+        margin-top: 0;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .card {
+        border: 1px solid #e5e7eb;
+        padding: 30px;
+        border-radius: 10px;
+        background: white;
+      }
+
+      .card h3 {
+        font-size: 22px;
+        margin-top: 0;
+      }
+
+      .card p {
+        line-height: 1.7;
+        color: #6b7280;
+      }
+
+      .contact {
+        background: #111827;
+        color: white;
+        text-align: center;
+      }
+
+      .contact p {
+        color: #d1d5db;
+        font-size: 19px;
+      }
+
+      footer {
+        padding: 30px 6%;
+        text-align: center;
+        color: #6b7280;
+        font-size: 14px;
+      }
+
+      @media (max-width: 800px) {
+        header {
+          display: block;
+        }
+
+        nav {
+          margin-top: 15px;
+        }
+
+        nav a {
+          margin: 0 18px 0 0;
+        }
+
+        .cards {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: 520px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">Michael Appel</div>
+
+      <nav>
+        <a href="/">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">REALTOR®</div>
+
+          <h1>Real Estate.<br />Done Right.</h1>
+
+          <p>
+            I'm Michael Appel, a REALTOR® focused on helping buyers and sellers
+            make confident real estate decisions.
+          </p>
+
+          <div class="buttons">
+            <a class="button primary" href="#contact">Let's Talk</a>
+            <a class="button secondary" href="#services">How I Can Help</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-inner">
+          <h2>About Michael</h2>
+
+          <p style="font-size: 19px; line-height: 1.8; max-width: 800px;">
+            Buying or selling a home is a major decision. My goal is to make
+            the process clear, straightforward, and focused on your goals.
+          </p>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="section-inner">
+          <h2>How I Can Help</h2>
+
+          <div class="cards">
+            <div class="card">
+              <h3>Buying</h3>
+              <p>
+                Guidance from searching for the right property through
+                negotiations and closing.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Selling</h3>
+              <p>
+                A thoughtful approach to positioning, marketing, negotiating,
+                and selling your property.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Local Expertise</h3>
+              <p>
+                Helping you understand the market and make decisions based on
+                your individual goals.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="section-inner">
+          <h2>Let's Talk Real Estate</h2>
+
+          <p>
+            Ready to buy, sell, or simply have a question?
+          </p>
+
+          <div class="buttons" style="justify-content: center;">
+            <a class="button secondary" href="mailto:YOUR-EMAIL-HERE">
+              Contact Michael
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © {new Date().getFullYear()} Michael Appel · REALTOR®
+    </footer>
+  </body>
 </html>
