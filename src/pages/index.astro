@@ -1,185 +1,655 @@
 ---
 const siteTitle = "Michael Appel | REALTOR®";
 const siteDescription =
-  "Michael Appel — REALTOR® helping buyers and sellers navigate real estate with confidence.";
+  "Michael Appel, REALTOR® — thoughtful real estate guidance for buyers, sellers, and homeowners.";
+
+const phone = "(402) 598-1088";
+const email = "michael.appel@nebraskarealty.com";
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{siteTitle}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={siteDescription} />
+    <meta name="theme-color" content="#0B1F33" />
+    <title>{siteTitle}</title>
 
     <style>
       :global(*) {
         box-sizing: border-box;
       }
 
+      :global(html) {
+        scroll-behavior: smooth;
+      }
+
       :global(body) {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #1f2937;
-        background: #ffffff;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        color: #172435;
+        background: #f8f6f1;
+        line-height: 1.6;
+      }
+
+      :global(a) {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      :global(button) {
+        font: inherit;
+      }
+
+      :global(.container) {
+        width: min(1180px, calc(100% - 48px));
+        margin: 0 auto;
       }
 
       header {
-        padding: 24px 6%;
-        border-bottom: 1px solid #e5e7eb;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(248, 246, 241, 0.96);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(11, 31, 51, 0.1);
       }
 
-      .logo {
-        font-size: 22px;
+      .nav {
+        min-height: 82px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border: 1px solid #b79a61;
+        display: grid;
+        place-items: center;
+        color: #b79a61;
+        font-family: Georgia, serif;
+        font-size: 18px;
+      }
+
+      .brand-name {
+        font-size: 17px;
         font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #0b1f33;
+      }
+
+      .brand-sub {
+        display: block;
+        margin-top: -3px;
+        color: #8a7652;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        font-size: 14px;
+        font-weight: 600;
       }
 
       nav a {
-        margin-left: 24px;
-        text-decoration: none;
-        color: #374151;
+        color: #334254;
+        transition: color 0.2s ease;
       }
 
       nav a:hover {
-        color: #111827;
+        color: #b08c4f;
+      }
+
+      .nav-cta {
+        padding: 12px 20px;
+        color: #fff !important;
+        background: #0b1f33;
+        border: 1px solid #0b1f33;
       }
 
       .hero {
-        min-height: 620px;
-        display: flex;
-        align-items: center;
-        padding: 80px 6%;
-        background: linear-gradient(135deg, #f8fafc, #eef2f7);
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            circle at 82% 30%,
+            rgba(183, 154, 97, 0.16),
+            transparent 30%
+          ),
+          linear-gradient(135deg, #0b1f33 0%, #132f49 62%, #0d253b 100%);
+        color: #fff;
       }
 
-      .hero-content {
-        max-width: 760px;
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(
+            90deg,
+            transparent 0,
+            rgba(255, 255, 255, 0.035) 50%,
+            transparent 100%
+          );
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        min-height: 720px;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        align-items: center;
+        gap: 70px;
+        padding: 78px 0;
       }
 
       .eyebrow {
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 25px;
+        color: #d0b47b;
+        font-size: 12px;
         font-weight: 700;
-        margin-bottom: 18px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 36px;
+        height: 1px;
+        background: #b79a61;
       }
 
       h1 {
-        font-size: clamp(46px, 7vw, 82px);
+        max-width: 760px;
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(54px, 7vw, 88px);
         line-height: 0.98;
-        margin: 0 0 24px;
-        letter-spacing: -3px;
+        font-weight: 400;
+        letter-spacing: -0.045em;
       }
 
-      .hero p {
-        font-size: 21px;
-        line-height: 1.6;
-        max-width: 650px;
-        color: #4b5563;
+      h1 em {
+        color: #d0b47b;
+        font-style: normal;
       }
 
-      .buttons {
-        margin-top: 32px;
+      .hero-copy {
+        max-width: 630px;
+        margin: 30px 0 0;
+        color: #d8e0e7;
+        font-size: 18px;
+        line-height: 1.75;
+      }
+
+      .hero-actions {
         display: flex;
-        gap: 14px;
         flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 38px;
       }
 
       .button {
-        display: inline-block;
-        padding: 15px 24px;
-        border-radius: 6px;
-        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        padding: 0 24px;
+        border: 1px solid #b79a61;
+        font-size: 14px;
         font-weight: 700;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease;
       }
 
-      .primary {
-        background: #111827;
-        color: white;
+      .button:hover {
+        transform: translateY(-2px);
       }
 
-      .secondary {
-        border: 1px solid #9ca3af;
-        color: #111827;
-        background: white;
+      .button-gold {
+        background: #b79a61;
+        color: #fff;
+      }
+
+      .button-outline {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      .hero-photo {
+        position: relative;
+        justify-self: end;
+        width: min(430px, 100%);
+      }
+
+      .hero-photo::before {
+        content: "";
+        position: absolute;
+        inset: 20px -20px -20px 20px;
+        border: 1px solid rgba(183, 154, 97, 0.6);
+      }
+
+      .hero-photo img {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        object-position: center top;
+        filter: saturate(0.9);
+      }
+
+      .photo-caption {
+        position: relative;
+        z-index: 2;
+        margin-top: -1px;
+        padding: 16px 20px;
+        background: #fff;
+        color: #0b1f33;
+        border-left: 3px solid #b79a61;
+      }
+
+      .photo-caption strong {
+        display: block;
+        font-size: 15px;
+      }
+
+      .photo-caption span {
+        display: block;
+        margin-top: 2px;
+        color: #8a7652;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .trust-bar {
+        background: #fff;
+        border-bottom: 1px solid #e4dfd5;
+      }
+
+      .trust-inner {
+        min-height: 100px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+      }
+
+      .trust-item {
+        padding: 20px 35px;
+        text-align: center;
+        border-right: 1px solid #e4dfd5;
+      }
+
+      .trust-item:last-child {
+        border-right: 0;
+      }
+
+      .trust-item strong {
+        display: block;
+        color: #0b1f33;
+        font-family: Georgia, serif;
+        font-size: 22px;
+        font-weight: 400;
+      }
+
+      .trust-item span {
+        color: #7c7a75;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
       }
 
       section {
-        padding: 90px 6%;
+        padding: 110px 0;
       }
 
-      .section-inner {
-        max-width: 1100px;
-        margin: auto;
+      .section-label {
+        margin-bottom: 14px;
+        color: #a18045;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
       }
 
-      h2 {
-        font-size: 40px;
-        margin-top: 0;
+      .section-title {
+        max-width: 760px;
+        margin: 0;
+        color: #0b1f33;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(40px, 5vw, 60px);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.035em;
       }
 
-      .cards {
+      .section-intro {
+        max-width: 680px;
+        margin: 24px 0 0;
+        color: #5c6670;
+        font-size: 17px;
+      }
+
+      .about {
+        background: #f8f6f1;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.75fr 1.25fr;
+        gap: 90px;
+        align-items: start;
+      }
+
+      .about-aside {
+        padding-top: 15px;
+      }
+
+      .signature {
+        margin-top: 40px;
+        color: #b08c4f;
+        font-family: Georgia, serif;
+        font-size: 34px;
+        font-style: italic;
+      }
+
+      .about-content p {
+        margin: 0 0 22px;
+        color: #46515d;
+        font-size: 17px;
+      }
+
+      .about-content p:first-child {
+        color: #172435;
+        font-size: 21px;
+        line-height: 1.65;
+      }
+
+      .services {
+        background: #fff;
+      }
+
+      .service-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        gap: 1px;
+        margin-top: 55px;
+        background: #ded9cf;
+        border: 1px solid #ded9cf;
       }
 
-      .card {
-        border: 1px solid #e5e7eb;
-        padding: 30px;
-        border-radius: 10px;
-        background: white;
+      .service {
+        min-height: 310px;
+        padding: 38px;
+        background: #fff;
       }
 
-      .card h3 {
-        font-size: 22px;
-        margin-top: 0;
+      .service-number {
+        color: #b79a61;
+        font-family: Georgia, serif;
+        font-size: 18px;
       }
 
-      .card p {
-        line-height: 1.7;
-        color: #6b7280;
+      .service h3 {
+        margin: 55px 0 15px;
+        color: #0b1f33;
+        font-family: Georgia, serif;
+        font-size: 29px;
+        font-weight: 400;
       }
 
-      .contact {
-        background: #111827;
-        color: white;
-        text-align: center;
+      .service p {
+        margin: 0;
+        color: #69737c;
+        font-size: 15px;
       }
 
-      .contact p {
-        color: #d1d5db;
-        font-size: 19px;
+      .process {
+        background: #0b1f33;
+        color: #fff;
       }
 
-      footer {
-        padding: 30px 6%;
-        text-align: center;
-        color: #6b7280;
+      .process .section-title {
+        color: #fff;
+      }
+
+      .process .section-intro {
+        color: #bac6d0;
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        margin-top: 60px;
+      }
+
+      .process-step {
+        padding: 30px 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .process-step:last-child {
+        border-right: 0;
+      }
+
+      .process-step span {
+        color: #d0b47b;
+        font-family: Georgia, serif;
+        font-size: 24px;
+      }
+
+      .process-step h3 {
+        margin: 32px 0 10px;
+        font-family: Georgia, serif;
+        font-size: 23px;
+        font-weight: 400;
+      }
+
+      .process-step p {
+        margin: 0;
+        color: #aebbc6;
         font-size: 14px;
       }
 
-      @media (max-width: 800px) {
-        header {
-          display: block;
-        }
+      .contact {
+        background: #f8f6f1;
+      }
 
+      .contact-card {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 50px;
+        padding: 65px;
+        background: #fff;
+        border: 1px solid #ded9cf;
+      }
+
+      .contact-card::after {
+        content: "MICHAEL APPEL";
+        position: absolute;
+        right: -40px;
+        bottom: -45px;
+        color: rgba(11, 31, 51, 0.035);
+        font-size: 90px;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+      }
+
+      .contact-card .section-title {
+        font-size: clamp(38px, 5vw, 55px);
+      }
+
+      .contact-details {
+        position: relative;
+        z-index: 2;
+        align-self: center;
+        padding-left: 35px;
+        border-left: 1px solid #d8c7a7;
+      }
+
+      .contact-details a {
+        display: block;
+        margin: 10px 0;
+        color: #0b1f33;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .contact-details small {
+        display: block;
+        margin-top: 25px;
+        color: #8a7652;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      footer {
+        padding: 45px 0;
+        background: #071724;
+        color: #fff;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+      }
+
+      .footer-name {
+        font-family: Georgia, serif;
+        font-size: 22px;
+      }
+
+      .footer-copy {
+        color: #8e9ba6;
+        font-size: 12px;
+      }
+
+      @media (max-width: 900px) {
         nav {
-          margin-top: 15px;
+          gap: 15px;
         }
 
-        nav a {
-          margin: 0 18px 0 0;
+        nav a:not(.nav-cta) {
+          display: none;
         }
 
-        .cards {
+        .hero-inner,
+        .about-grid,
+        .contact-card {
           grid-template-columns: 1fr;
         }
 
-        .hero {
-          min-height: 520px;
+        .hero-inner {
+          padding: 65px 0 80px;
+        }
+
+        .hero-photo {
+          justify-self: start;
+          width: min(390px, 90%);
+        }
+
+        .service-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .process-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .process-step:nth-child(2) {
+          border-right: 0;
+        }
+
+        .contact-details {
+          padding-left: 0;
+          padding-top: 25px;
+          border-left: 0;
+          border-top: 1px solid #d8c7a7;
+        }
+      }
+
+      @media (max-width: 600px) {
+        :global(.container) {
+          width: min(100% - 32px, 1180px);
+        }
+
+        .nav {
+          min-height: 72px;
+        }
+
+        .hero-inner {
+          min-height: auto;
+        }
+
+        h1 {
+          font-size: 52px;
+        }
+
+        section {
+          padding: 75px 0;
+        }
+
+        .trust-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .trust-item {
+          border-right: 0;
+          border-bottom: 1px solid #e4dfd5;
+        }
+
+        .trust-item:last-child {
+          border-bottom: 0;
+        }
+
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .process-step {
+          border-right: 0;
+        }
+
+        .contact-card {
+          padding: 35px 25px;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
         }
       }
     </style>
@@ -187,97 +657,273 @@ const siteDescription =
 
   <body>
     <header>
-      <div class="logo">Michael Appel</div>
+      <div class="container nav">
+        <a class="brand" href="#top" aria-label="Michael Appel home">
+          <div class="brand-mark">M</div>
+          <div>
+            <div class="brand-name">MICHAEL APPEL</div>
+            <span class="brand-sub">REALTOR®</span>
+          </div>
+        </a>
 
-      <nav>
-        <a href="/">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </nav>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#process">Approach</a>
+          <a href="#contact" class="nav-cta">Let's Talk</a>
+        </nav>
+      </div>
     </header>
 
-    <main>
+    <main id="top">
       <section class="hero">
-        <div class="hero-content">
-          <div class="eyebrow">REALTOR®</div>
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">Nebraska Realty</div>
 
-          <h1>Real Estate.<br />Done Right.</h1>
+            <h1>
+              Real Estate.<br />
+              <em>Done Right.</em>
+            </h1>
 
-          <p>
-            I'm Michael Appel, a REALTOR® focused on helping buyers and sellers
-            make confident real estate decisions.
-          </p>
+            <p class="hero-copy">
+              I'm Michael Appel, a REALTOR® focused on helping buyers and
+              sellers make confident real estate decisions with clear
+              communication, thoughtful strategy, and personal attention.
+            </p>
 
-          <div class="buttons">
-            <a class="button primary" href="#contact">Let's Talk</a>
-            <a class="button secondary" href="#services">How I Can Help</a>
+            <div class="hero-actions">
+              <a class="button button-gold" href="#contact">Let's Talk</a>
+              <a class="button button-outline" href="#services">
+                How I Can Help
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-photo">
+            <img
+              src="/headshot.jpg"
+              alt="Michael Appel, REALTOR®"
+            />
+
+            <div class="photo-caption">
+              <strong>Michael Appel</strong>
+              <span>REALTOR® · Nebraska Realty</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="about">
-        <div class="section-inner">
-          <h2>About Michael</h2>
+      <div class="trust-bar">
+        <div class="container trust-inner">
+          <div class="trust-item">
+            <strong>Strategic</strong>
+            <span>Market Guidance</span>
+          </div>
 
-          <p style="font-size: 19px; line-height: 1.8; max-width: 800px;">
-            Buying or selling a home is a major decision. My goal is to make
-            the process clear, straightforward, and focused on your goals.
-          </p>
+          <div class="trust-item">
+            <strong>Personal</strong>
+            <span>Client Experience</span>
+          </div>
+
+          <div class="trust-item">
+            <strong>Confident</strong>
+            <span>Real Estate Decisions</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="about" id="about">
+        <div class="container about-grid">
+          <div class="about-aside">
+            <div class="section-label">The Michael Appel Difference</div>
+
+            <h2 class="section-title">
+              A more thoughtful way to move through real estate.
+            </h2>
+
+            <div class="signature">Michael Appel</div>
+          </div>
+
+          <div class="about-content">
+            <p>
+              Buying or selling a home is a major decision. My goal is to make
+              the process clear, organized, and considerably less stressful.
+            </p>
+
+            <p>
+              I believe great real estate service starts with listening. From
+              the first conversation through closing, I focus on understanding
+              what matters to you, explaining the decisions in front of you,
+              and helping you move forward with confidence.
+            </p>
+
+            <p>
+              Whether you're purchasing your first home, preparing to sell,
+              relocating, or simply trying to understand the market, you'll
+              have a responsive professional in your corner.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section id="services">
-        <div class="section-inner">
-          <h2>How I Can Help</h2>
+      <section class="services" id="services">
+        <div class="container">
+          <div class="section-label">How I Can Help</div>
 
-          <div class="cards">
-            <div class="card">
+          <h2 class="section-title">
+            Real estate advice built around your goals.
+          </h2>
+
+          <p class="section-intro">
+            Every client has a different reason for making a move. The strategy
+            should be personal, too.
+          </p>
+
+          <div class="service-grid">
+            <article class="service">
+              <div class="service-number">01</div>
+
               <h3>Buying</h3>
-              <p>
-                Guidance from searching for the right property through
-                negotiations and closing.
-              </p>
-            </div>
 
-            <div class="card">
+              <p>
+                Navigate the market with a clear plan, informed decisions,
+                strong negotiation, and guidance from search through closing.
+              </p>
+            </article>
+
+            <article class="service">
+              <div class="service-number">02</div>
+
               <h3>Selling</h3>
-              <p>
-                A thoughtful approach to positioning, marketing, negotiating,
-                and selling your property.
-              </p>
-            </div>
 
-            <div class="card">
-              <h3>Local Expertise</h3>
               <p>
-                Helping you understand the market and make decisions based on
-                your individual goals.
+                Position your property thoughtfully, understand the market,
+                evaluate offers, and negotiate from a position of confidence.
               </p>
-            </div>
+            </article>
+
+            <article class="service">
+              <div class="service-number">03</div>
+
+              <h3>Relocation</h3>
+
+              <p>
+                Make an unfamiliar market feel manageable with local guidance,
+                responsive communication, and a process designed around your
+                timeline.
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="contact">
-        <div class="section-inner">
-          <h2>Let's Talk Real Estate</h2>
+      <section class="process" id="process">
+        <div class="container">
+          <div class="section-label">The Process</div>
 
-          <p>
-            Ready to buy, sell, or simply have a question?
+          <h2 class="section-title">
+            Clear direction.<br />
+            No unnecessary noise.
+          </h2>
+
+          <p class="section-intro">
+            The best real estate experience is one where you always know what
+            is happening, why it matters, and what comes next.
           </p>
 
-          <div class="buttons" style="justify-content: center;">
-            <a class="button secondary" href="mailto:YOUR-EMAIL-HERE">
-              Contact Michael
-            </a>
+          <div class="process-grid">
+            <article class="process-step">
+              <span>01</span>
+              <h3>Listen</h3>
+              <p>
+                Start with your goals, priorities, timeline, and the outcome
+                you're looking for.
+              </p>
+            </article>
+
+            <article class="process-step">
+              <span>02</span>
+              <h3>Plan</h3>
+              <p>
+                Build a practical strategy around the market and your specific
+                circumstances.
+              </p>
+            </article>
+
+            <article class="process-step">
+              <span>03</span>
+              <h3>Execute</h3>
+              <p>
+                Stay proactive through showings, offers, negotiations,
+                inspections, and deadlines.
+              </p>
+            </article>
+
+            <article class="process-step">
+              <span>04</span>
+              <h3>Close</h3>
+              <p>
+                Keep the details moving so you can arrive at closing prepared
+                and confident.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="container">
+          <div class="contact-card">
+            <div>
+              <div class="section-label">Start a Conversation</div>
+
+              <h2 class="section-title">
+                Thinking about your next move?
+              </h2>
+
+              <p class="section-intro">
+                Whether you're ready to make a move or simply want to talk
+                through your options, let's start with a conversation.
+              </p>
+
+              <div class="hero-actions">
+                <a class="button button-gold" href={`tel:${phone.replace(/\D/g, "")}`}>
+                  Call Michael
+                </a>
+
+                <a class="button" href={`mailto:${email}`}>
+                  Email Michael
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-details">
+              <small>Direct Contact</small>
+
+              <a href={`tel:${phone.replace(/\D/g, "")}`}>
+                {phone}
+              </a>
+
+              <a href={`mailto:${email}`}>
+                {email}
+              </a>
+
+              <small>Serving Nebraska</small>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
-      © {new Date().getFullYear()} Michael Appel · REALTOR®
+      <div class="container footer-inner">
+        <div class="footer-name">Michael Appel</div>
+
+        <div class="footer-copy">
+          REALTOR® · Nebraska Realty · © {new Date().getFullYear()}
+        </div>
+      </div>
     </footer>
   </body>
 </html>
