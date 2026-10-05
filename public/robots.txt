@@ -1,0 +1,11 @@
+# Allow search indexing and retrieval for ChatGPT search answers.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://michaelappelrealtor.com/sitemap-index.xml
