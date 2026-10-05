@@ -8,7 +8,7 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   site: "https://michaelappelrealtor.com",
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap({ filter: (page) => page === "https://michaelappelrealtor.com/" })],
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
